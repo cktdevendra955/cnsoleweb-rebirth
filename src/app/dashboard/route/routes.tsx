@@ -5,8 +5,7 @@ export const ROUTES = {
 
   // Main Sections
   DRIVE: `${BASE_URL}/drives`,
-  HIRING: `${BASE_URL}/hiring`,
-  INBOX: `${BASE_URL}/inbox`,
+  INTERNSHIP: `${BASE_URL}/internship`,
   INTERVIEWS: `${BASE_URL}/interviews`,
 
   // Feature Sections
