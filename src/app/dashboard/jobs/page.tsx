@@ -1,207 +1,131 @@
 "use client";
 
-import { useState } from "react";
-import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
 import {
+  LayoutDashboard,
+  User,
   Search,
-  MapPin,
   Briefcase,
-  Clock,
-  DollarSign,
-  Filter,
   Bookmark,
-  X,
-  CheckCircle2,
+  Calendar,
+  MessageCircle,
+  Bell,
+  Settings,
+  Trash2,
+  Sparkles,
 } from "lucide-react";
 
-const jobs = [
-  {
-    id: 1,
-    company: "Meta",
-    logo: "https://picsum.photos/seed/meta/100/100",
-    role: "Product Designer",
-    location: "Menlo Park, CA",
-    type: "Full-time",
-    salary: "$160k - $220k",
-    posted: "12h ago",
-    description: "We are looking for a Product Designer to help us build the future...",
-    tags: ["Design System", "Figma", "Prototyping"],
-  },
-  {
-    id: 2,
-    company: "Apple",
-    logo: "https://picsum.photos/seed/apple/100/100",
-    role: "Senior UX Designer",
-    location: "Cupertino, CA",
-    type: "Full-time",
-    salary: "$190k - $250k",
-    posted: "1 day ago",
-    description: "Join the team that designs iconic products...",
-    tags: ["iOS", "Human Interface", "Accessibility"],
-  },
-  {
-    id: 3,
-    company: "Netflix",
-    logo: "https://picsum.photos/seed/netflix/100/100",
-    role: "Interaction Designer",
-    location: "Remote",
-    type: "Remote",
-    salary: "$170k - $230k",
-    posted: "2 days ago",
-    description: "Help shape how millions discover content...",
-    tags: ["TV UI", "Motion Design", "User Testing"],
-  },
-];
-
-export default function FindJobs() {
-  const [selectedJob, setSelectedJob] = useState<(typeof jobs)[0] | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-
+export default function Page() {
   return (
-    <div className="flex h-full lg:h-[calc(100vh-80px)] gap-6 relative p-5">
+    <div className="">
       
-      {/* LEFT LIST */}
-      <div className={`flex-1 flex flex-col gap-4 overflow-hidden ${selectedJob ? "hidden lg:flex" : ""}`}>
-        
-        {/* Search */}
-        <div className="flex gap-3">
-          <div className="flex-1 relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-400" size={18} />
-            <input
-              placeholder="Search jobs..."
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 bg-white rounded-xl shadow-sm focus:ring-2 focus:ring-primary outline-none"
-            />
+     
+
+      {/* ================= MAIN ================= */}
+      <main className=" w-full min-h-screen">
+        {/* CONTENT */}
+        <div className="pt-24 px-12 mx-auto">
+          
+          {/* HEADER TEXT */}
+          <div className="flex justify-between items-end mb-12">
+            <div>
+              <span className="text-xs text-indigo-600 uppercase font-bold">
+                Curation
+              </span>
+              <h2 className="text-4xl font-bold">Saved Jobs</h2>
+              <p className="text-gray-500 mt-2">
+                Manage your shortlisted opportunities.
+              </p>
+            </div>
+
+            <div className="flex gap-4">
+              <button className="px-6 py-2 rounded-full bg-gray-200 text-sm">
+                Filter
+              </button>
+              <button className="px-6 py-2 rounded-full bg-indigo-600 text-white text-sm">
+                Search Jobs
+              </button>
+            </div>
           </div>
 
-          <button className="px-4 py-3 bg-white rounded-xl shadow-sm flex items-center gap-2">
-            <Filter size={18} />
-            <span className="hidden sm:block">Filters</span>
-          </button>
-        </div>
+          {/* GRID */}
+          <div className="grid lg:grid-cols-12 gap-6">
 
-        {/* LIST */}
-        <div className="flex-1 overflow-y-auto space-y-4 pb-10">
-          {jobs.map((job) => (
-            <motion.div
-              key={job.id}
-              onClick={() => setSelectedJob(job)}
-              className={`p-4 rounded-xl border-2 cursor-pointer transition ${
-                selectedJob?.id === job.id
-                  ? "border-primary bg-white shadow-lg"
-                  : "border-transparent bg-white hover:border-slate-200"
-              }`}
-            >
-              <div className="flex gap-4">
-                <Image src={job.logo} alt="" width={56} height={56} className="rounded-xl" />
-
-                <div className="flex-1">
-                  <div className="flex justify-between">
-                    <div>
-                      <h3 className="font-bold text-slate-900">{job.role}</h3>
-                      <p className="text-primary font-semibold">{job.company}</p>
-                    </div>
-
-                    <Bookmark className="text-slate-400 hover:text-primary" />
-                  </div>
-
-                  <div className="flex flex-wrap gap-3 mt-3 text-sm text-slate-500">
-                    <span className="flex items-center gap-1"><MapPin size={14} />{job.location}</span>
-                    <span className="flex items-center gap-1"><Briefcase size={14} />{job.type}</span>
-                    <span className="flex items-center gap-1"><DollarSign size={14} />{job.salary}</span>
-                    <span className="ml-auto flex items-center gap-1"><Clock size={14} />{job.posted}</span>
-                  </div>
+            {/* BIG CARD */}
+            <div className="lg:col-span-8 bg-white p-8 rounded-3xl shadow">
+              <div className="flex justify-between mb-6">
+                <div>
+                  <h3 className="text-2xl font-bold">
+                    Senior Product Designer
+                  </h3>
+                  <p className="text-gray-500">Linear · Remote</p>
                 </div>
+                <span className="text-indigo-600 font-bold">98%</span>
               </div>
-            </motion.div>
-          ))}
-        </div>
-      </div>
 
-      {/* RIGHT PANEL / MOBILE DRAWER */}
-      <AnimatePresence>
-        {selectedJob && (
-          <>
-            {/* BACKDROP */}
-            <motion.div
-              className="fixed inset-0 bg-black/40 z-40 lg:hidden"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedJob(null)}
-            />
+              <div className="flex gap-3 mb-6">
+                <Tag text="Figma" />
+                <Tag text="Design Systems" />
+                <Tag text="Strategy" />
+              </div>
 
-            {/* PANEL */}
-            <motion.div
-              initial={{ x: "100%" }}
-              animate={{ x: 0 }}
-              exit={{ x: "100%" }}
-              className="fixed right-0 top-0 h-screen w-full sm:w-[420px] bg-white z-50 shadow-2xl flex flex-col lg:relative lg:w-[450px]"
-            >
-              <div className="p-6 overflow-y-auto flex-1 space-y-6">
-                
-                {/* HEADER */}
-                <div className="flex justify-between">
-                  <Image src={selectedJob.logo} alt="" width={70} height={70} className="rounded-2xl" />
-                  <button onClick={() => setSelectedJob(null)}>
-                    <X size={24} />
+              <div className="flex justify-between">
+                <p className="text-sm text-gray-400">Saved 2 days ago</p>
+                <div className="flex gap-3">
+                  <button className="p-3 bg-gray-100 rounded-xl">
+                    <Trash2 size={18} />
+                  </button>
+                  <button className="px-6 bg-indigo-600 text-white rounded-xl">
+                    Apply
                   </button>
                 </div>
-
-                <div>
-                  <h2 className="text-xl font-bold">{selectedJob.role}</h2>
-                  <p className="text-primary font-semibold">{selectedJob.company}</p>
-                </div>
-
-                {/* INFO */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="bg-slate-100 p-3 rounded-xl">
-                    <p className="text-xs text-slate-500">Location</p>
-                    <p className="font-bold">{selectedJob.location}</p>
-                  </div>
-                  <div className="bg-slate-100 p-3 rounded-xl">
-                    <p className="text-xs text-slate-500">Salary</p>
-                    <p className="font-bold">{selectedJob.salary}</p>
-                  </div>
-                </div>
-
-                {/* DESC */}
-                <p className="text-slate-600 text-sm">
-                  {selectedJob.description}
-                </p>
-
-                {/* TAGS */}
-                <div className="flex flex-wrap gap-2">
-                  {selectedJob.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 bg-slate-100 rounded-full text-xs">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
               </div>
+            </div>
 
-              {/* FOOTER */}
-              <div className="p-4 border-t flex gap-3">
-                <button className="flex-1 py-3 bg-primary text-white rounded-xl">
-                  Apply Now
-                </button>
-                <button className="p-3 bg-slate-100 rounded-xl">
-                  <Bookmark />
-                </button>
-              </div>
-            </motion.div>
-          </>
-        )}
-      </AnimatePresence>
+            {/* SIDE CARD */}
+            <div className="lg:col-span-4 bg-indigo-600 text-white p-8 rounded-3xl">
+              <Sparkles className="mb-4" />
+              <h4 className="font-bold mb-2">Alignment</h4>
+              <p className="text-sm opacity-80">
+                Your profile matches 98% of this role.
+              </p>
+            </div>
 
-      {/* EMPTY STATE */}
-      {!selectedJob && (
-        <div className="hidden lg:flex w-[450px] items-center justify-center border-dashed border-2 rounded-xl">
-          <p className="text-slate-400">Select a job</p>
+          </div>
         </div>
-      )}
+      </main>
     </div>
+  );
+}
+
+/* ================= COMPONENTS ================= */
+
+function SidebarItem({
+  icon,
+  label,
+  active = false,
+}: {
+  icon: React.ReactNode;
+  label: string;
+  active?: boolean;
+}) {
+  return (
+    <div
+      className={`flex items-center gap-3 px-4 py-3 rounded-xl cursor-pointer ${
+        active
+          ? "bg-white text-indigo-600 font-semibold"
+          : "text-gray-500 hover:bg-white"
+      }`}
+    >
+      {icon}
+      <span>{label}</span>
+    </div>
+  );
+}
+
+function Tag({ text }: { text: string }) {
+  return (
+    <span className="px-4 py-2 bg-gray-100 rounded-xl text-sm text-gray-600">
+      {text}
+    </span>
   );
 }

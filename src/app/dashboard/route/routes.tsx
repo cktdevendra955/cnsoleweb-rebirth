@@ -7,6 +7,7 @@ export const ROUTES = {
   DRIVE: `${BASE_URL}/drives`,
   INTERNSHIP: `${BASE_URL}/internship`,
   INTERVIEWS: `${BASE_URL}/interviews`,
+  PORTFOLIO: `${BASE_URL}/portfolio`,
 
   // Feature Sections
   JOBS: `${BASE_URL}/jobs`,

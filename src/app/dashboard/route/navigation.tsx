@@ -25,6 +25,12 @@ export const NAV_ITEMS: NavItem[] = [
     section: "main",
   },
   {
+    label: "Portfolio",
+    path: ROUTES.PORTFOLIO,
+    icon: LayoutDashboard,
+    section: "main",
+  },
+  {
     label: "Hiring Drives",
     path: ROUTES.DRIVE,
     icon: Users,

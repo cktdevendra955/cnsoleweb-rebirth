@@ -53,7 +53,7 @@ export default function DashboardLayout({
           openMobile={() => setIsMobileOpen(true)}
         />
 
-        <div className="flex-1 overflow-auto">{children}</div>
+        <div className="flex-1 overflow-auto bg-[#f7f9fb] text-[#191c1e]">{children}</div>
       </main>
     </div>
   );
